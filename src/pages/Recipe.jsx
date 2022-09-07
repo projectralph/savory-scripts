@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import styled from 'styled-components'
 import {useParams} from 'react-router-dom'
+import {motion} from 'framer-motion'
 
 
 function Recipe() {
@@ -22,7 +23,12 @@ useEffect(() => {
 // eslint-disable-next-line react-hooks/exhaustive-deps
 }, [params.name]);
 
-  return <DetailWrapper>
+  return <DetailWrapper
+  animate={{opacity: 1}}
+    initial={{opacity: 0}}
+    exit={{opacity: 0}}
+    transition={{duration: 0.5}}
+  >
 <div>
     <h2>{details.title}</h2>
     <img src={details.image} alt="" />
@@ -49,7 +55,7 @@ useEffect(() => {
   
 }
 
-const DetailWrapper = styled.div`
+const DetailWrapper = styled(motion.div)`
 margin-top: 10rem;
 margin-bottom: 5rem;
 display: flex;
